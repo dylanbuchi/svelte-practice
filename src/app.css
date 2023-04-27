@@ -1,3 +1,15 @@
 :root {
-  background-color: rgb(253, 253, 253);
+  background-color: #e4e4e4;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  min-height: 100vh;
 }

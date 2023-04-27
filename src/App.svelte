@@ -3,6 +3,3 @@
 </script>
 
 <Counter />
-
-<style>
-</style>
