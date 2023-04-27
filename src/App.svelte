@@ -2,4 +2,4 @@
   import Counter from "./lib/Counter.svelte";
 </script>
 
-<Counter />
+<Counter maxCount={20} />

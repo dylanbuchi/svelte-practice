@@ -1,9 +1,11 @@
 <script lang="ts">
-  let count = 0;
+  export let count = 0;
+  export let maxCount = 10;
+
   $: message = `The count is at number: ${count}`;
 
   function increment() {
-    count = Math.min(count + 1, 10);
+    count = Math.min(count + 1, maxCount);
   }
 
   function decrement() {
@@ -14,8 +16,8 @@
     message = text;
   }
 
-  $: if (count === 10) {
-    updateMessage(`${count} is the max value`);
+  $: if (count === maxCount) {
+    updateMessage(`${maxCount} is the max value`);
   }
 
   $: if (count === 0) {
