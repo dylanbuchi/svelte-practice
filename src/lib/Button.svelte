@@ -2,7 +2,7 @@
   export let label = "Button";
 </script>
 
-<button>{label}</button>
+<button {...$$restProps}>{label}</button>
 
 <style>
   button {
@@ -21,5 +21,9 @@
 
   button:active {
     opacity: 1;
+  }
+  button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
   }
 </style>
