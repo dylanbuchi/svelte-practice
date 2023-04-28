@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Counter from "./lib/Counter.svelte";
+  import TodoList from "./lib/todos/TodoList.svelte";
 </script>
 
-<Counter maxCount={20} />
+<TodoList />
