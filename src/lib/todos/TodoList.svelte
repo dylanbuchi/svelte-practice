@@ -103,11 +103,11 @@
   }
 
   button:hover {
-    background-color: #eee;
+    opacity: 0.75;
   }
 
   button:active {
-    background-color: #fff;
+    opacity: 1;
   }
 
   .container {
@@ -118,5 +118,13 @@
   .done {
     text-decoration-line: line-through;
     color: #999;
+  }
+  .danger {
+    background: rgb(188, 46, 46);
+    color: white;
+  }
+  .primary {
+    background: rgb(50, 65, 198);
+    color: white;
   }
 </style>
