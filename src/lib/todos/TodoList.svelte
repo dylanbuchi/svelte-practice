@@ -1,29 +1,32 @@
 <script lang="ts">
-  import { v4 as uuid } from "uuid";
+  import { createEventDispatcher } from "svelte";
+  import type { Todos } from "./todos.model";
 
-  interface Todos {
-    id: string;
-    title: string;
-    text: string;
-    done: boolean;
-  }
+  export let todos: Todos[];
 
   let title = "";
   let text = "";
-
-  let todos: Todos[] = [
-    { id: uuid(), title: "Title", text: "Todo", done: false },
-    { id: uuid(), title: "Title 2", text: "Todo 2", done: false },
-    { id: uuid(), title: "Title 3", text: "Todo 3", done: true },
-  ];
 
   function getButtonLabel(done: boolean) {
     return `Mark as ${done ? "incomplete" : "completed"}`;
   }
 
+  function resetInputs() {
+    title = "";
+    text = "";
+  }
+
+  const dispatch = createEventDispatcher();
+
   function handleSubmit() {
     if (!text || !title) return alert("Text and title can't be empty");
-    todos = [{ id: uuid(), title, text, done: false }, ...todos];
+
+    dispatch("addTodo", {
+      title,
+      text,
+    });
+
+    resetInputs();
   }
 </script>
 
