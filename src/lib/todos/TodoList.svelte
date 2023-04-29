@@ -34,6 +34,12 @@
       id,
     });
   }
+
+  function handleToggleTodoIsDone(id: string) {
+    dispatch("toggleTodoIsDone", {
+      id,
+    });
+  }
 </script>
 
 <div class="container">
@@ -57,10 +63,7 @@
           <h1>{todo.text}</h1>
           <h2>{todo.text}</h2>
         </div>
-        <button
-          on:click={() => {
-            todo.done = !todo.done;
-          }}
+        <button on:click={() => handleToggleTodoIsDone(todo.id)}
           >{getButtonLabel(todo.done)}
         </button>
         <button class="danger" on:click={() => handleRemoveTodo(todo.id)}

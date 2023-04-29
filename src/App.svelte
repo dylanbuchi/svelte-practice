@@ -18,6 +18,21 @@
     const id = event.detail.id;
     todos = todos.filter((item) => item.id !== id);
   }
+
+  function toggleTodoIsDone(event: CustomEvent) {
+    const id = event.detail.id;
+    todos = todos.map((item) => {
+      if (item.id === id) {
+        return { ...item, done: !item.done };
+      }
+      return item;
+    });
+  }
 </script>
 
-<TodoList {todos} on:addTodo={addTodo} on:removeTodo={removeTodo} />
+<TodoList
+  {todos}
+  on:addTodo={addTodo}
+  on:removeTodo={removeTodo}
+  on:toggleTodoIsDone={toggleTodoIsDone}
+/>
