@@ -1,15 +1,46 @@
 <script lang="ts">
+  import { v4 as uuid } from "uuid";
+
+  interface Todos {
+    id: string;
+    title: string;
+    text: string;
+    done: boolean;
+  }
+
+  let title = "";
+  let text = "";
+
+  let todos: Todos[] = [
+    { id: uuid(), title: "Title", text: "Todo", done: false },
+    { id: uuid(), title: "Title 2", text: "Todo 2", done: false },
+    { id: uuid(), title: "Title 3", text: "Todo 3", done: true },
+  ];
+
   function getButtonLabel(done: boolean) {
     return `Mark as ${done ? "incomplete" : "completed"}`;
   }
-  const todos = [
-    { id: 1, title: "Title", text: "Todo", done: false },
-    { id: 2, title: "Title 2", text: "Todo 2", done: false },
-    { id: 3, title: "Title 3", text: "Todo 3", done: true },
-  ];
+
+  function handleSubmit() {
+    if (!text || !title) return alert("Text and title can't be empty");
+    todos = [{ id: uuid(), title, text, done: false }, ...todos];
+  }
 </script>
 
 <div class="container">
+  <form>
+    <label for="title">
+      Title
+      <input type="text" name="value" bind:value={title} /></label
+    >
+    <label for="text"
+      >Text
+      <input type="text" name="value" bind:value={text} /></label
+    >
+    <button on:click|preventDefault={handleSubmit} type="submit"
+      >Add Todo</button
+    >
+  </form>
   <ul>
     {#each todos as todo (todo.id)}
       <li>
