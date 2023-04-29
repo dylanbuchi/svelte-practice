@@ -28,6 +28,12 @@
 
     resetInputs();
   }
+
+  function handleRemoveTodo(id: string) {
+    dispatch("removeTodo", {
+      id,
+    });
+  }
 </script>
 
 <div class="container">
@@ -40,22 +46,26 @@
       >Text
       <input type="text" name="value" bind:value={text} /></label
     >
-    <button on:click|preventDefault={handleSubmit} type="submit"
+    <button class="primary" on:click|preventDefault={handleSubmit} type="submit"
       >Add Todo</button
     >
   </form>
-  <ul>
+  <ul class="todos">
     {#each todos as todo (todo.id)}
       <li>
         <div class={todo.done ? "done" : ""}>
           <h1>{todo.text}</h1>
           <h2>{todo.text}</h2>
-          <button
-            on:click={() => {
-              todo.done = !todo.done;
-            }}>{getButtonLabel(todo.done)}</button
-          >
         </div>
+        <button
+          on:click={() => {
+            todo.done = !todo.done;
+          }}
+          >{getButtonLabel(todo.done)}
+        </button>
+        <button class="danger" on:click={() => handleRemoveTodo(todo.id)}
+          >Delete
+        </button>
       </li>
     {/each}
   </ul>
@@ -110,6 +120,10 @@
     opacity: 1;
   }
 
+  .todos > li > button + .danger {
+    margin-left: 1rem;
+  }
+
   .container {
     max-width: 600px;
     margin: 0 auto;
@@ -119,10 +133,12 @@
     text-decoration-line: line-through;
     color: #999;
   }
+
   .danger {
     background: rgb(188, 46, 46);
     color: white;
   }
+
   .primary {
     background: rgb(50, 65, 198);
     color: white;

@@ -13,6 +13,11 @@
 
     todos = [{ id: uuid(), title, text, done: false }, ...todos];
   }
+
+  function removeTodo(event: CustomEvent) {
+    const id = event.detail.id;
+    todos = todos.filter((item) => item.id !== id);
+  }
 </script>
 
-<TodoList {todos} on:addTodo={addTodo} />
+<TodoList {todos} on:addTodo={addTodo} on:removeTodo={removeTodo} />
