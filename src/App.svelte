@@ -5,6 +5,7 @@
   import TodoList from "./lib/todos/TodoList.svelte";
   import { getTodos } from "./lib/todos/todos.constants";
 
+  let todoList: TodoList;
   let todos = getTodos();
 
   function addTodo(event: CustomEvent) {
@@ -12,11 +13,13 @@
     const text = event.detail.text;
 
     todos = [{ id: uuid(), title, text, done: false }, ...todos];
+    todoList.focusInput();
   }
 
   function removeTodo(event: CustomEvent) {
     const id = event.detail.id;
     todos = todos.filter((item) => item.id !== id);
+    todoList.focusInput();
   }
 
   function toggleTodoIsDone(event: CustomEvent) {
@@ -35,4 +38,5 @@
   on:addTodo={addTodo}
   on:removeTodo={removeTodo}
   on:toggleTodoIsDone={toggleTodoIsDone}
+  bind:this={todoList}
 />
