@@ -7,6 +7,12 @@
   let title = "";
   let text = "";
 
+  let titleInput: HTMLInputElement;
+
+  export function focusInput() {
+    titleInput.focus();
+  }
+
   function getButtonLabel(done: boolean) {
     return `Mark as ${done ? "incomplete" : "completed"}`;
   }
@@ -46,7 +52,12 @@
   <form>
     <label for="title">
       Title
-      <input type="text" name="value" bind:value={title} /></label
+      <input
+        type="text"
+        name="value"
+        bind:this={titleInput}
+        bind:value={title}
+      /></label
     >
     <label for="text"
       >Text
