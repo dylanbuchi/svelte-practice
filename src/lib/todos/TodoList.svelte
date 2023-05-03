@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { createEventDispatcher } from "svelte";
+  import { createEventDispatcher, onMount } from "svelte";
   import type { Todos } from "./todos.model";
 
   export let todos: Todos[];
@@ -46,6 +46,10 @@
       id,
     });
   }
+
+  onMount(() => {
+    focusInput();
+  });
 </script>
 
 <div class="container">
@@ -140,7 +144,9 @@
 
   .container {
     max-width: 600px;
+    max-height: 100vh;
     margin: 0 auto;
+    overflow-y: auto;
   }
 
   .done {
